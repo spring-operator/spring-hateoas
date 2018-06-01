@@ -24,7 +24,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.hateoas.core.ControllerEntityLinksUnitTest.Person;
 import org.springframework.hateoas.core.ControllerEntityLinksUnitTest.SampleController;
-import org.springframework.hateoas.mvc.ControllerLinkBuilderFactory;
+import org.springframework.hateoas.web.mvc.ControllerLinkBuilderFactory;
 import org.springframework.stereotype.Controller;
 
 /**

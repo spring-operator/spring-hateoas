@@ -27,7 +27,7 @@ import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.LinkBuilderFactory;
 import org.springframework.hateoas.core.ControllerEntityLinksFactoryBean;
 import org.springframework.hateoas.core.DelegatingEntityLinks;
-import org.springframework.hateoas.mvc.ControllerLinkBuilderFactory;
+import org.springframework.hateoas.web.mvc.ControllerLinkBuilderFactory;
 import org.springframework.plugin.core.support.PluginRegistryFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ClassUtils;

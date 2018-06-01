@@ -18,7 +18,7 @@ package org.springframework.hateoas;
 import java.lang.reflect.Method;
 
 import org.springframework.hateoas.core.DummyInvocationUtils;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+import org.springframework.hateoas.web.mvc.ControllerLinkBuilder;
 
 /**
  * Extension of {@link LinkBuilderFactory} for implementations that also support creating {@link LinkBuilder}s by

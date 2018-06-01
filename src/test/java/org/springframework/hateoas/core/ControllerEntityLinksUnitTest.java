@@ -18,7 +18,7 @@ package org.springframework.hateoas.core;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
+import static org.springframework.hateoas.web.mvc.ControllerLinkBuilder.*;
 
 import java.util.Arrays;
 
