@@ -28,6 +28,7 @@ import org.springframework.hateoas.ResourceProcessor;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.core.EmbeddedWrapper;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
@@ -60,9 +61,9 @@ public class ResourceProcessorInvoker {
 			ResolvableType processorType = ResolvableType.forClass(ResourceProcessor.class, processor.getClass());
 			Class<?> rawType = processorType.getGeneric(0).resolve();
 
-			if (Resource.class.isAssignableFrom(rawType)) {
+			if (rawType!= null && Resource.class.isAssignableFrom(rawType)) {
 				this.processors.add(new ResourceProcessorWrapper(processor));
-			} else if (Resources.class.isAssignableFrom(rawType)) {
+			} else if (rawType!= null && Resources.class.isAssignableFrom(rawType)) {
 				this.processors.add(new ResourcesProcessorWrapper(processor));
 			} else {
 				this.processors.add(new DefaultProcessorWrapper(processor));
@@ -117,7 +118,9 @@ public class ResourceProcessorInvoker {
 				result.add(invokeProcessorsFor(element, elementTargetType));
 			}
 
-			ReflectionUtils.setField(ResourceProcessorHandlerMethodReturnValueHandler.CONTENT_FIELD, resources, result);
+			if (ResourceProcessorHandlerMethodReturnValueHandler.CONTENT_FIELD != null) {
+				ReflectionUtils.setField(ResourceProcessorHandlerMethodReturnValueHandler.CONTENT_FIELD, resources, result);
+			}
 		}
 
 		return (T) invokeProcessorsFor((Object) value, referenceType);
@@ -144,8 +147,8 @@ public class ResourceProcessorInvoker {
 		return currentValue;
 	}
 
-	private static boolean isRawTypeAssignable(ResolvableType left, Class<?> right) {
-		return getRawType(left).isAssignableFrom(right);
+	private static boolean isRawTypeAssignable(ResolvableType left, @Nullable Class<?> right) {
+		return right != null && getRawType(left).isAssignableFrom(right);
 	}
 
 	private static Class<?> getRawType(ResolvableType type) {
@@ -281,7 +284,7 @@ public class ResourceProcessorInvoker {
 		 * @param target must not be {@literal null}.
 		 * @return whether the given {@link Resource} can be assigned to the given target {@link ResolvableType}
 		 */
-		private static boolean isValueTypeMatch(Resource<?> resource, ResolvableType target) {
+		private static boolean isValueTypeMatch(@Nullable Resource<?> resource, ResolvableType target) {
 
 			if (resource == null || !isRawTypeAssignable(target, resource.getClass())) {
 				return false;
@@ -297,6 +300,7 @@ public class ResourceProcessorInvoker {
 			return type != null && type.getGeneric(0).isAssignableFrom(ResolvableType.forClass(content.getClass()));
 		}
 
+		@Nullable
 		private static ResolvableType findGenericType(ResolvableType source, Class<?> type) {
 
 			Class<?> rawType = getRawType(source);
@@ -352,7 +356,7 @@ public class ResourceProcessorInvoker {
 		 * @param target that target {@link ResolvableType}.
 		 * @return
 		 */
-		static boolean isValueTypeMatch(Resources<?> resources, ResolvableType target) {
+		static boolean isValueTypeMatch(@Nullable Resources<?> resources, ResolvableType target) {
 
 			if (resources == null) {
 				return false;
@@ -398,20 +402,21 @@ public class ResourceProcessorInvoker {
 		 * @param superType must not be {@literal null}.
 		 * @return
 		 */
+		@Nullable
 		private static ResolvableType getSuperType(ResolvableType source, Class<?> superType) {
 
-			if (source.getRawClass().equals(superType)) {
+			if (source.getRawClass() != null && source.getRawClass().equals(superType)) {
 				return source;
 			}
 
 			ResolvableType candidate = source.getSuperType();
 
-			if (superType.isAssignableFrom(candidate.getRawClass())) {
+			if (candidate.getRawClass() != null && superType.isAssignableFrom(candidate.getRawClass())) {
 				return candidate;
 			}
 
 			for (ResolvableType interfaces : source.getInterfaces()) {
-				if (superType.isAssignableFrom(interfaces.getRawClass())) {
+				if (interfaces.getRawClass() != null && superType.isAssignableFrom(interfaces.getRawClass())) {
 					return interfaces;
 				}
 			}

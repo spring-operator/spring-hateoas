@@ -22,6 +22,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -36,6 +37,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.hateoas.Resource;
+import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -53,7 +55,11 @@ public class PropertyUtils {
 		FIELDS_TO_IGNORE.add("links");
 	}
 
-	public static Map<String, Object> findProperties(Object object) {
+	public static Map<String, Object> findProperties(@Nullable Object object) {
+
+		if (object == null) {
+			return Collections.emptyMap();
+		}
 
 		if (object.getClass().equals(Resource.class)) {
 			return findProperties(((Resource<?>) object).getContent());
@@ -72,7 +78,8 @@ public class PropertyUtils {
 				},
 				HashMap::putAll);
 	}
-	
+
+	@Nullable
 	public static List<String> findPropertyNames(ResolvableType resolvableType) {
 
 		if (WebStack.WEBFLUX.isAvailable()) {
@@ -82,14 +89,14 @@ public class PropertyUtils {
 			}
 		}
 
-		if (resolvableType.getRawClass().equals(Resource.class)) {
+		if (resolvableType.getRawClass() != null && resolvableType.getRawClass().equals(Resource.class)) {
 			return findPropertyNames(resolvableType.resolveGeneric(0));
 		} else {
 			return findPropertyNames(resolvableType.getRawClass());
 		}
 	}
 
-	public static List<String> findPropertyNames(Class<?> clazz) {
+	public static List<String> findPropertyNames(@Nullable Class<?> clazz) {
 
 		return getPropertyDescriptors(clazz)
 			.map(FeatureDescriptor::getName)
@@ -122,8 +129,12 @@ public class PropertyUtils {
 	 * @param clazz
 	 * @return
 	 */
-	private static Stream<PropertyDescriptor> getPropertyDescriptors(Class<?> clazz) {
+	private static Stream<PropertyDescriptor> getPropertyDescriptors(@Nullable Class<?> clazz) {
 
+		if (clazz == null) {
+			return Stream.empty();
+		}
+		
 		return Arrays.stream(BeanUtils.getPropertyDescriptors(clazz))
 			.filter(descriptor -> !FIELDS_TO_IGNORE.contains(descriptor.getName()))
 			.filter(descriptor -> !descriptorToBeIgnoredByJackson(clazz, descriptor))
@@ -141,6 +152,10 @@ public class PropertyUtils {
 	private static boolean descriptorToBeIgnoredByJackson(Class<?> clazz, PropertyDescriptor descriptor) {
 
 		Field descriptorField = ReflectionUtils.findField(clazz, descriptor.getName());
+
+		if (descriptorField == null) {
+			return false;
+		}
 
 		return toBeIgnoredByJackson(AnnotationUtils.getAnnotations(descriptorField));
 	}
@@ -161,7 +176,7 @@ public class PropertyUtils {
 	 * @param annotations
 	 * @return
 	 */
-	private static boolean toBeIgnoredByJackson(Annotation[] annotations) {
+	private static boolean toBeIgnoredByJackson(@Nullable Annotation[] annotations) {
 
 		if (annotations != null) {
 			for (Annotation annotation : annotations) {
@@ -183,7 +198,13 @@ public class PropertyUtils {
 	 */
 	private static boolean toBeIgnoredByJackson(Class<?> clazz, String field) {
 
-		for (Annotation annotation : AnnotationUtils.getAnnotations(clazz)) {
+		Annotation[] annotations = AnnotationUtils.getAnnotations(clazz);
+
+		if (annotations == null) {
+			return false;
+		}
+
+		for (Annotation annotation : annotations) {
 			if (annotation.annotationType().equals(JsonIgnoreProperties.class)) {
 				String[] namesOfPropertiesToIgnore = (String[]) AnnotationUtils.getAnnotationAttributes(annotation).get("value");
 				for (String propertyToIgnore : namesOfPropertiesToIgnore) {

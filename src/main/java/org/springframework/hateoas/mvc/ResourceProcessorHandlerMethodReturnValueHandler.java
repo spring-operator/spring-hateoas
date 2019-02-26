@@ -51,7 +51,9 @@ public class ResourceProcessorHandlerMethodReturnValueHandler implements Handler
 	static final Field CONTENT_FIELD = ReflectionUtils.findField(Resources.class, "content");
 
 	static {
-		ReflectionUtils.makeAccessible(CONTENT_FIELD);
+		if (CONTENT_FIELD != null) {
+			ReflectionUtils.makeAccessible(CONTENT_FIELD);
+		}
 	}
 
 	private final @NonNull HandlerMethodReturnValueHandler delegate;

@@ -15,6 +15,7 @@
  */
 package org.springframework.hateoas;
 
+import org.springframework.lang.Nullable;
 import org.springframework.plugin.core.Plugin;
 
 /**
@@ -30,6 +31,7 @@ public interface RelProvider extends Plugin<Class<?>> {
 	 * @param type must not be {@literal null}.
 	 * @return
 	 */
+	@Nullable
 	LinkRelation getItemResourceRelFor(Class<?> type);
 
 	/**
@@ -38,5 +40,6 @@ public interface RelProvider extends Plugin<Class<?>> {
 	 * @param type must not be {@literal null}.
 	 * @return
 	 */
+	@Nullable
 	LinkRelation getCollectionResourceRelFor(Class<?> type);
 }

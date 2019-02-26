@@ -16,6 +16,7 @@
 package org.springframework.hateoas.core;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,7 +53,13 @@ public class SpringAffordanceBuilder {
 
 		List<Affordance> affordances = new ArrayList<>();
 
-		for (HttpMethod requestMethod : discoverer.getRequestMethod(invocation.getTargetType(), invocation.getMethod())) {
+		Collection<HttpMethod> requestMethods = discoverer.getRequestMethod(invocation.getTargetType(), invocation.getMethod());
+
+		if (requestMethods == null) {
+			return affordances;
+		}
+		
+		for (HttpMethod requestMethod : requestMethods) {
 
 			String methodName = invocation.getMethod().getName();
 

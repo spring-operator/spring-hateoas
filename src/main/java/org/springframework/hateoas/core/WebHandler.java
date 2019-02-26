@@ -42,6 +42,7 @@ import org.springframework.hateoas.Affordance;
 import org.springframework.hateoas.LinkBuilder;
 import org.springframework.hateoas.TemplateVariable;
 import org.springframework.hateoas.TemplateVariables;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.MultiValueMap;
@@ -80,7 +81,7 @@ public class WebHandler {
 
 	public static <T extends LinkBuilder> T linkTo(Object invocationValue,
 			Function<String, UriComponentsBuilder> mappingToUriComponentsBuilder, LinkBuilderCreator<T> creator,
-			BiFunction<UriComponentsBuilder, MethodInvocation, UriComponentsBuilder> additionalUriHandler) {
+			@Nullable BiFunction<UriComponentsBuilder, MethodInvocation, UriComponentsBuilder> additionalUriHandler) {
 
 		Assert.isInstanceOf(LastInvocationAware.class, invocationValue);
 
@@ -182,17 +183,21 @@ public class WebHandler {
 		} else if (value instanceof Collection) {
 
 			for (Object element : (Collection<?>) value) {
-				builder.queryParam(key, encodeParameter(element));
+				if (key != null) {
+					builder.queryParam(key, encodeParameter(element));
+				}
 			}
 
 		} else if (SKIP_VALUE.equals(value)) {
 
-			if (parameter.isRequired()) {
+			if (parameter.isRequired() && key != null) {
 				builder.queryParam(key, String.format("{%s}", parameter.getVariableName()));
 			}
 
 		} else {
-			builder.queryParam(key, encodeParameter(parameter.asString()));
+			if (key != null) {
+				builder.queryParam(key, encodeParameter(parameter.asString()));
+			}
 		}
 	}
 
@@ -242,6 +247,7 @@ public class WebHandler {
 		 * @see org.springframework.hateoas.mvc.AnnotatedParametersParameterAccessor#verifyParameterValue(org.springframework.core.MethodParameter, java.lang.Object)
 		 */
 		@Override
+		@Nullable
 		protected Object verifyParameterValue(MethodParameter parameter, Object value) {
 
 			RequestParam annotation = parameter.getParameterAnnotation(RequestParam.class);
@@ -323,7 +329,8 @@ public class WebHandler {
 		 * @param value could be {@literal null}.
 		 * @return the verified value.
 		 */
-		protected Object verifyParameterValue(MethodParameter parameter, Object value) {
+		@Nullable
+		protected Object verifyParameterValue(MethodParameter parameter, @Nullable Object value) {
 			return value;
 		}
 
@@ -375,6 +382,7 @@ public class WebHandler {
 			 *
 			 * @return
 			 */
+			@Nullable
 			public String getVariableName() {
 
 				if (attribute == null) {
@@ -401,6 +409,7 @@ public class WebHandler {
 			 *
 			 * @return
 			 */
+			@Nullable
 			public String asString() {
 
 				return value == null //

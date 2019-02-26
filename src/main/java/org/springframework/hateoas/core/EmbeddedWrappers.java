@@ -22,6 +22,7 @@ import java.util.Optional;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.hateoas.LinkRelation;
 import org.springframework.hateoas.Resource;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
@@ -48,6 +49,7 @@ public class EmbeddedWrappers {
 	 * @param source
 	 * @return
 	 */
+	@Nullable
 	public EmbeddedWrapper wrap(Object source) {
 		return wrap(source, AbstractEmbeddedWrapper.NO_REL);
 	}
@@ -70,7 +72,8 @@ public class EmbeddedWrappers {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public EmbeddedWrapper wrap(Object source, LinkRelation rel) {
+	@Nullable
+	public EmbeddedWrapper wrap(@Nullable Object source, LinkRelation rel) {
 
 		if (source == null) {
 			return null;
@@ -134,6 +137,7 @@ public class EmbeddedWrappers {
 		 */
 		@Override
 		@SuppressWarnings("unchecked")
+		@Nullable
 		public Class<?> getRelTargetType() {
 
 			Object peek = peek();
@@ -144,7 +148,11 @@ public class EmbeddedWrappers {
 
 			peek = peek instanceof Resource ? ((Resource<Object>) peek).getContent() : peek;
 
-			return AopUtils.getTargetClass(peek);
+			if (peek != null) {
+				return AopUtils.getTargetClass(peek);
+			}
+
+			return null;
 		}
 
 		/**
@@ -152,6 +160,7 @@ public class EmbeddedWrappers {
 		 *
 		 * @return
 		 */
+		@Nullable
 		protected abstract Object peek();
 	}
 
@@ -245,6 +254,7 @@ public class EmbeddedWrappers {
 		 * @see org.springframework.hateoas.core.EmbeddedWrappers.AbstractEmbeddedWrapper#peek()
 		 */
 		@Override
+		@Nullable
 		protected Object peek() {
 			return value.isEmpty() ? null : value.iterator().next();
 		}

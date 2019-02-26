@@ -21,6 +21,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.LinkDiscoverer;
 import org.springframework.hateoas.LinkDiscoverers;
 import org.springframework.http.MediaType;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 import com.jayway.jsonpath.JsonPath;
@@ -62,7 +63,7 @@ class Rels {
 		 * @param mediaType
 		 * @return
 		 */
-		Optional<Link> findInResponse(String representation, MediaType mediaType);
+		Optional<Link> findInResponse(@Nullable String representation, @Nullable MediaType mediaType);
 	}
 
 	/**
@@ -95,7 +96,7 @@ class Rels {
 		 * @see org.springframework.hateoas.client.Rels.Rel#findInResponse(java.lang.String, org.springframework.http.MediaType)
 		 */
 		@Override
-		public Optional<Link> findInResponse(String response, MediaType mediaType) {
+		public Optional<Link> findInResponse(@Nullable String response, @Nullable MediaType mediaType) {
 
 			return discoverers //
 					.getRequiredLinkDiscovererFor(mediaType) //
@@ -143,7 +144,7 @@ class Rels {
 		 * @see org.springframework.hateoas.client.Rels.Rel#findInResponse(java.lang.String, org.springframework.http.MediaType)
 		 */
 		@Override
-		public Optional<Link> findInResponse(String representation, MediaType mediaType) {
+		public Optional<Link> findInResponse(@Nullable String representation, @Nullable MediaType mediaType) {
 			return Optional.of(new Link(JsonPath.read(representation, jsonPath).toString(), rel));
 		}
 	}

@@ -18,11 +18,11 @@ package org.springframework.hateoas.reactive;
 import static org.springframework.hateoas.reactive.HypermediaWebFilter.*;
 
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.function.Function;
 
+import reactor.core.publisher.Mono;
 import org.springframework.hateoas.Affordance;
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.hateoas.Link;
@@ -31,6 +31,7 @@ import org.springframework.hateoas.TemplateVariables;
 import org.springframework.hateoas.core.DummyInvocationUtils;
 import org.springframework.hateoas.core.TemplateVariableAwareLinkBuilderSupport;
 import org.springframework.hateoas.core.WebHandler;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.util.UriComponents;
@@ -228,7 +229,7 @@ public class WebFluxLinkBuilder extends TemplateVariableAwareLinkBuilderSupport<
 	 *
 	 * @param exchange
 	 */
-	private static UriComponentsBuilder getBuilder(ServerWebExchange exchange) {
+	private static UriComponentsBuilder getBuilder(@Nullable ServerWebExchange exchange) {
 
 		return exchange == null //
 				? UriComponentsBuilder.fromPath("/") //
@@ -241,7 +242,7 @@ public class WebFluxLinkBuilder extends TemplateVariableAwareLinkBuilderSupport<
 				.flatMap(context -> linkToInternal(invocation, context.getOrDefault(SERVER_WEB_EXCHANGE, null)));
 	}
 
-	private static Mono<WebFluxLinkBuilder> linkToInternal(Object invocation, ServerWebExchange exchange) {
+	private static Mono<WebFluxLinkBuilder> linkToInternal(Object invocation, @Nullable ServerWebExchange exchange) {
 
 		return Mono.just(WebHandler.linkTo(invocation, //
 				path -> getBuilder(exchange).replacePath(path == null ? "/" : path), //

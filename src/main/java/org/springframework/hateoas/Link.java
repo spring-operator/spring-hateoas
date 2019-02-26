@@ -32,6 +32,7 @@ import java.util.regex.Pattern;
 
 import org.springframework.core.ResolvableType;
 import org.springframework.http.HttpMethod;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
@@ -126,7 +127,7 @@ public class Link implements Serializable {
 	 * @param href must not be {@literal null} or empty.
 	 * @param rel must not be {@literal null} or empty.
 	 */
-	public Link(String href, LinkRelation rel) {
+	public Link(@Nullable String href, LinkRelation rel) {
 		this(new UriTemplate(href), rel);
 	}
 
@@ -440,6 +441,7 @@ public class Link implements Serializable {
 	 * @throws IllegalArgumentException if no {@code rel} attribute could be found.
 	 * @return
 	 */
+	@Nullable
 	public static Link valueOf(String element) {
 
 		if (!StringUtils.hasText(element)) {

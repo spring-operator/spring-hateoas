@@ -32,6 +32,7 @@ import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.hal.HalLinkRelation;
 import org.springframework.hateoas.hal.Jackson2HalModule.HalLinkListSerializer;
 import org.springframework.hateoas.hal.forms.Jackson2HalFormsModule.HalFormsLinksDeserializer;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -95,7 +96,7 @@ public class HalFormsDocument<T> {
 	 * @param resource can be {@literal null}.
 	 * @return
 	 */
-	public static <T> HalFormsDocument<T> forResource(T resource) {
+	public static <T> HalFormsDocument<T> forResource(@Nullable T resource) {
 		return new HalFormsDocument<T>().withResource(resource);
 	}
 

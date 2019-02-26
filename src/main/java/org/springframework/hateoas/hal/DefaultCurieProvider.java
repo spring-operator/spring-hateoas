@@ -26,6 +26,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.LinkRelation;
 import org.springframework.hateoas.Links;
 import org.springframework.hateoas.UriTemplate;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -75,7 +76,7 @@ public class DefaultCurieProvider implements CurieProvider {
 	 * @param defaultCurieName can be {@literal null}.
 	 * @since 0.19
 	 */
-	public DefaultCurieProvider(Map<String, UriTemplate> curies, String defaultCurieName) {
+	public DefaultCurieProvider(Map<String, UriTemplate> curies, @Nullable String defaultCurieName) {
 
 		Assert.notNull(curies, "Curies must not be null!");
 
@@ -118,7 +119,7 @@ public class DefaultCurieProvider implements CurieProvider {
 	 * @see org.springframework.hateoas.hal.CurieProvider#getNamespacedRelFrom(java.lang.String)
 	 */
 	@Override
-	public HalLinkRelation getNamespacedRelFor(LinkRelation relation) {
+	public HalLinkRelation getNamespacedRelFor(@Nullable LinkRelation relation) {
 
 		HalLinkRelation result = HalLinkRelation.of(relation);
 

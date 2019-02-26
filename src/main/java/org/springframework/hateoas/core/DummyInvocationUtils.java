@@ -30,6 +30,7 @@ import org.springframework.cglib.proxy.Callback;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.Factory;
 import org.springframework.cglib.proxy.MethodProxy;
+import org.springframework.lang.Nullable;
 import org.springframework.objenesis.ObjenesisStd;
 import org.springframework.util.Assert;
 import org.springframework.util.ConcurrentReferenceHashMap;
@@ -89,6 +90,7 @@ public class DummyInvocationUtils {
 		 * @see org.springframework.cglib.proxy.MethodInterceptor#intercept(java.lang.Object, java.lang.reflect.Method, java.lang.Object[], org.springframework.cglib.proxy.MethodProxy)
 		 */
 		@Override
+		@Nullable
 		public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) {
 
 			if (GET_INVOCATIONS.equals(method)) {
@@ -110,6 +112,7 @@ public class DummyInvocationUtils {
 		 * @see org.aopalliance.intercept.MethodInterceptor#invoke(org.aopalliance.intercept.MethodInvocation)
 		 */
 		@Override
+		@Nullable
 		public Object invoke(org.aopalliance.intercept.MethodInvocation invocation) {
 			return intercept(invocation.getThis(), invocation.getMethod(), invocation.getArguments(), null);
 		}

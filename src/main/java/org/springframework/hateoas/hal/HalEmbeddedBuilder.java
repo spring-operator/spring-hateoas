@@ -27,6 +27,7 @@ import org.springframework.hateoas.RelProvider;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.core.EmbeddedWrapper;
 import org.springframework.hateoas.core.EmbeddedWrappers;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
@@ -99,7 +100,7 @@ class HalEmbeddedBuilder {
 	}
 
 	@SuppressWarnings("unchecked")
-	private Collection<Object> asCollection(Object source) {
+	private Collection<Object> asCollection(@Nullable Object source) {
 
 		return source instanceof Collection //
 				? (Collection<Object>) source //

@@ -19,6 +19,7 @@ import java.util.Optional;
 
 import org.springframework.hateoas.LinkRelation;
 import org.springframework.hateoas.Resource;
+import org.springframework.lang.Nullable;
 
 /**
  * A wrapper to handle values to be embedded into a {@link Resource}.
@@ -66,5 +67,6 @@ public interface EmbeddedWrapper {
 	 *
 	 * @return
 	 */
+	@Nullable
 	Class<?> getRelTargetType();
 }

@@ -32,6 +32,7 @@ import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.hal.HalLinkRelation;
 import org.springframework.hateoas.hal.Jackson2HalModule;
 import org.springframework.http.HttpMethod;
+import org.springframework.lang.Nullable;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.BeanProperty;
@@ -59,7 +60,7 @@ class HalFormsSerializers {
 
 		private final BeanProperty property;
 
-		HalFormsResourceSerializer(BeanProperty property) {
+		HalFormsResourceSerializer(@Nullable BeanProperty property) {
 
 			super(Resource.class, false);
 			this.property = property;
@@ -80,11 +81,13 @@ class HalFormsSerializers {
 		}
 
 		@Override
+		@Nullable
 		public JavaType getContentType() {
 			return null;
 		}
 
 		@Override
+		@Nullable
 		public JsonSerializer<?> getContentSerializer() {
 			return null;
 		}
@@ -95,6 +98,7 @@ class HalFormsSerializers {
 		}
 
 		@Override
+		@Nullable
 		protected ContainerSerializer<?> _withValueTypeSerializer(TypeSerializer typeSerializer) {
 			return null;
 		}
@@ -116,7 +120,7 @@ class HalFormsSerializers {
 		private final BeanProperty property;
 		private final Jackson2HalModule.EmbeddedMapper embeddedMapper;
 
-		HalFormsResourcesSerializer(BeanProperty property, Jackson2HalModule.EmbeddedMapper embeddedMapper) {
+		HalFormsResourcesSerializer(@Nullable BeanProperty property, Jackson2HalModule.EmbeddedMapper embeddedMapper) {
 
 			super(Resources.class, false);
 
@@ -155,11 +159,13 @@ class HalFormsSerializers {
 		}
 
 		@Override
+		@Nullable
 		public JavaType getContentType() {
 			return null;
 		}
 
 		@Override
+		@Nullable
 		public JsonSerializer<?> getContentSerializer() {
 			return null;
 		}
@@ -170,6 +176,7 @@ class HalFormsSerializers {
 		}
 
 		@Override
+		@Nullable
 		protected ContainerSerializer<?> _withValueTypeSerializer(TypeSerializer typeSerializer) {
 			return null;
 		}

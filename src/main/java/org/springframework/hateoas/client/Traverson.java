@@ -47,6 +47,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.lang.Nullable;
 import org.springframework.plugin.core.OrderAwarePluginRegistry;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestOperations;
@@ -192,7 +193,7 @@ public class Traverson {
 	 * @param operations
 	 * @return
 	 */
-	public Traverson setRestOperations(RestOperations operations) {
+	public Traverson setRestOperations(@Nullable RestOperations operations) {
 
 		this.operations = operations == null ? createDefaultTemplate(this.mediaTypes) : operations;
 		return this;
@@ -329,6 +330,7 @@ public class Traverson {
 		 * @param type must not be {@literal null}.
 		 * @return
 		 */
+		@Nullable
 		public <T> T toObject(Class<T> type) {
 
 			Assert.notNull(type, "Target type must not be null!");
@@ -346,6 +348,7 @@ public class Traverson {
 		 * @param type must not be {@literal null}.
 		 * @return
 		 */
+		@Nullable
 		public <T> T toObject(ParameterizedTypeReference<T> type) {
 
 			Assert.notNull(type, "Target type must not be null!");

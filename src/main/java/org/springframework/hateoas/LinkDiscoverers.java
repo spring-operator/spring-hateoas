@@ -18,6 +18,7 @@ package org.springframework.hateoas;
 import java.util.Optional;
 
 import org.springframework.http.MediaType;
+import org.springframework.lang.Nullable;
 import org.springframework.plugin.core.PluginRegistry;
 import org.springframework.util.Assert;
 
@@ -68,6 +69,7 @@ public class LinkDiscoverers {
 	 * @param mediaType
 	 * @return will never be {@literal null}.
 	 */
+	@Nullable
 	public LinkDiscoverer getRequiredLinkDiscovererFor(MediaType mediaType) {
 		return discoverers.getRequiredPluginFor(mediaType);
 	}
@@ -78,6 +80,7 @@ public class LinkDiscoverers {
 	 * @param mediaType
 	 * @return
 	 */
+	@Nullable
 	public LinkDiscoverer getRequiredLinkDiscovererFor(String mediaType) {
 		return getRequiredLinkDiscovererFor(MediaType.valueOf(mediaType));
 	}

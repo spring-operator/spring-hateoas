@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
@@ -767,7 +768,7 @@ public class IanaLinkRelations {
 	 * @param rel
 	 * @return boolean
 	 */
-	public static boolean isIanaRel(String rel) {
+	public static boolean isIanaRel(@Nullable String rel) {
 
 		return rel != null && LINK_RELATIONS.stream() //
 				.anyMatch(it -> it.value().equalsIgnoreCase(rel));
@@ -779,7 +780,7 @@ public class IanaLinkRelations {
 	 * @param rel
 	 * @return
 	 */
-	public static boolean isIanaRel(LinkRelation rel) {
+	public static boolean isIanaRel(@Nullable LinkRelation rel) {
 
 		return rel != null && LINK_RELATIONS.stream() //
 				.anyMatch(it -> it.value().equalsIgnoreCase(rel.value()));

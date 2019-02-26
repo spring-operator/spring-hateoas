@@ -37,6 +37,7 @@ import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.hal.HalConfiguration.RenderSingleLinks;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -118,8 +119,8 @@ public class Jackson2HalModule extends SimpleModule {
 			this(null, curieProvider, mapper, accessor, halConfiguration);
 		}
 
-		public HalLinkListSerializer(BeanProperty property, CurieProvider curieProvider, EmbeddedMapper mapper,
-				MessageSourceAccessor accessor, HalConfiguration halConfiguration) {
+		public HalLinkListSerializer(@Nullable BeanProperty property, @Nullable CurieProvider curieProvider,
+				@Nullable EmbeddedMapper mapper, @Nullable MessageSourceAccessor accessor, HalConfiguration halConfiguration) {
 
 			super(TypeFactory.defaultInstance().constructType(Links.class));
 
@@ -219,6 +220,7 @@ public class Jackson2HalModule extends SimpleModule {
 		 * @param relation must not be {@literal null} or empty.
 		 * @return
 		 */
+		@Nullable
 		private String getTitle(HalLinkRelation relation) {
 
 			Assert.notNull(relation, "Local relation must not be null or empty!");
@@ -245,6 +247,7 @@ public class Jackson2HalModule extends SimpleModule {
 		 * @see com.fasterxml.jackson.databind.ser.ContainerSerializer#getContentType()
 		 */
 		@Override
+		@Nullable
 		public JavaType getContentType() {
 			return null;
 		}
@@ -254,6 +257,7 @@ public class Jackson2HalModule extends SimpleModule {
 		 * @see com.fasterxml.jackson.databind.ser.ContainerSerializer#getContentSerializer()
 		 */
 		@Override
+		@Nullable
 		public JsonSerializer<?> getContentSerializer() {
 			return null;
 		}
@@ -281,6 +285,7 @@ public class Jackson2HalModule extends SimpleModule {
 		 * @see com.fasterxml.jackson.databind.ser.ContainerSerializer#_withValueTypeSerializer(com.fasterxml.jackson.databind.jsontype.TypeSerializer)
 		 */
 		@Override
+		@Nullable
 		protected ContainerSerializer<?> _withValueTypeSerializer(TypeSerializer vts) {
 			return null;
 		}
@@ -304,7 +309,7 @@ public class Jackson2HalModule extends SimpleModule {
 			this(null, embeddedMapper);
 		}
 
-		public HalResourcesSerializer(BeanProperty property, EmbeddedMapper embeddedMapper) {
+		public HalResourcesSerializer(@Nullable BeanProperty property, EmbeddedMapper embeddedMapper) {
 
 			super(TypeFactory.defaultInstance().constructType(Collection.class));
 
@@ -342,11 +347,13 @@ public class Jackson2HalModule extends SimpleModule {
 		}
 
 		@Override
+		@Nullable
 		public JavaType getContentType() {
 			return null;
 		}
 
 		@Override
+		@Nullable
 		public JsonSerializer<?> getContentSerializer() {
 			return null;
 		}
@@ -362,6 +369,7 @@ public class Jackson2HalModule extends SimpleModule {
 		}
 
 		@Override
+		@Nullable
 		protected ContainerSerializer<?> _withValueTypeSerializer(TypeSerializer vts) {
 			return null;
 		}
@@ -428,8 +436,8 @@ public class Jackson2HalModule extends SimpleModule {
 
 			HalLink halLink = HalLink.class.cast(firstElement);
 
-			if (list.size() == 1
-					&& halConfiguration.getSingleLinkRenderModeFor(halLink.getLink().getRel()).equals(RenderSingleLinks.AS_SINGLE)) {
+			if (list.size() == 1 && halConfiguration.getSingleLinkRenderModeFor(halLink.getLink().getRel())
+					.equals(RenderSingleLinks.AS_SINGLE)) {
 
 				serializeContents(halLink, jgen, provider);
 
@@ -444,6 +452,7 @@ public class Jackson2HalModule extends SimpleModule {
 		 * @see com.fasterxml.jackson.databind.ser.ContainerSerializer#getContentSerializer()
 		 */
 		@Override
+		@Nullable
 		public JsonSerializer<?> getContentSerializer() {
 			return null;
 		}
@@ -453,6 +462,7 @@ public class Jackson2HalModule extends SimpleModule {
 		 * @see com.fasterxml.jackson.databind.ser.ContainerSerializer#getContentType()
 		 */
 		@Override
+		@Nullable
 		public JavaType getContentType() {
 			return null;
 		}
@@ -520,6 +530,7 @@ public class Jackson2HalModule extends SimpleModule {
 		 * @see com.fasterxml.jackson.databind.deser.std.ContainerDeserializerBase#getContentType()
 		 */
 		@Override
+		@Nullable
 		public JavaType getContentType() {
 			return null;
 		}
@@ -529,6 +540,7 @@ public class Jackson2HalModule extends SimpleModule {
 		 * @see com.fasterxml.jackson.databind.deser.std.ContainerDeserializerBase#getContentDeserializer()
 		 */
 		@Override
+		@Nullable
 		public JsonDeserializer<Object> getContentDeserializer() {
 			return null;
 		}
@@ -586,7 +598,7 @@ public class Jackson2HalModule extends SimpleModule {
 			this(TypeFactory.defaultInstance().constructCollectionLikeType(List.class, vc), vc);
 		}
 
-		private HalResourcesDeserializer(JavaType type, JavaType contentType) {
+		private HalResourcesDeserializer(JavaType type, @Nullable JavaType contentType) {
 
 			super(type);
 			this.contentType = contentType;
@@ -597,6 +609,7 @@ public class Jackson2HalModule extends SimpleModule {
 		 * @see com.fasterxml.jackson.databind.deser.std.ContainerDeserializerBase#getContentType()
 		 */
 		@Override
+		@Nullable
 		public JavaType getContentType() {
 			return null;
 		}
@@ -606,6 +619,7 @@ public class Jackson2HalModule extends SimpleModule {
 		 * @see com.fasterxml.jackson.databind.deser.std.ContainerDeserializerBase#getContentDeserializer()
 		 */
 		@Override
+		@Nullable
 		public JsonDeserializer<Object> getContentDeserializer() {
 			return null;
 		}
@@ -698,7 +712,7 @@ public class Jackson2HalModule extends SimpleModule {
 		}
 
 		private HalHandlerInstantiator(RelProvider provider, CurieProvider curieProvider, MessageSourceAccessor accessor,
-				boolean enforceEmbeddedCollections, AutowireCapableBeanFactory delegate, HalConfiguration halConfiguration) {
+				boolean enforceEmbeddedCollections, @Nullable AutowireCapableBeanFactory delegate, HalConfiguration halConfiguration) {
 
 			Assert.notNull(provider, "RelProvider must not be null!");
 
@@ -886,7 +900,8 @@ public class Jackson2HalModule extends SimpleModule {
 		private final Link link;
 		private final String title;
 
-		public HalLink(Link link, String title) {
+		public HalLink(Link link, @Nullable String title) {
+			
 			this.link = link;
 			this.title = title;
 		}
@@ -897,6 +912,7 @@ public class Jackson2HalModule extends SimpleModule {
 		}
 
 		@JsonInclude(Include.NON_NULL)
+		@Nullable
 		public String getTitle() {
 			return title;
 		}

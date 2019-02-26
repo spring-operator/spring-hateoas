@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Links;
 import org.springframework.hateoas.PagedResources;
@@ -128,7 +129,7 @@ public class Jackson2UberModule extends SimpleModule {
 		private static final long serialVersionUID = -572866287910993300L;
 		private final BeanProperty property;
 
-		UberResourceSupportSerializer(BeanProperty property) {
+		UberResourceSupportSerializer(@Nullable BeanProperty property) {
 
 			super(ResourceSupport.class, false);
 			this.property = property;
@@ -152,11 +153,13 @@ public class Jackson2UberModule extends SimpleModule {
 		}
 
 		@Override
+		@Nullable
 		public JavaType getContentType() {
 			return null;
 		}
 
 		@Override
+		@Nullable
 		public JsonSerializer<?> getContentSerializer() {
 			return null;
 		}
@@ -167,6 +170,7 @@ public class Jackson2UberModule extends SimpleModule {
 		}
 
 		@Override
+		@Nullable
 		protected ContainerSerializer<?> _withValueTypeSerializer(TypeSerializer vts) {
 			return null;
 		}
@@ -187,7 +191,7 @@ public class Jackson2UberModule extends SimpleModule {
 
 		private final BeanProperty property;
 
-		UberResourceSerializer(BeanProperty property) {
+		UberResourceSerializer(@Nullable BeanProperty property) {
 
 			super(Resource.class, false);
 			this.property = property;
@@ -210,11 +214,13 @@ public class Jackson2UberModule extends SimpleModule {
 		}
 
 		@Override
+		@Nullable
 		public JavaType getContentType() {
 			return null;
 		}
 
 		@Override
+		@Nullable
 		public JsonSerializer<?> getContentSerializer() {
 			return null;
 		}
@@ -225,6 +231,7 @@ public class Jackson2UberModule extends SimpleModule {
 		}
 
 		@Override
+		@Nullable
 		protected ContainerSerializer<?> _withValueTypeSerializer(TypeSerializer vts) {
 			return null;
 		}
@@ -245,7 +252,7 @@ public class Jackson2UberModule extends SimpleModule {
 
 		private BeanProperty property;
 
-		UberResourcesSerializer(BeanProperty property) {
+		UberResourcesSerializer(@Nullable BeanProperty property) {
 
 			super(Resources.class, false);
 			this.property = property;
@@ -273,11 +280,13 @@ public class Jackson2UberModule extends SimpleModule {
 		}
 
 		@Override
+		@Nullable
 		public JavaType getContentType() {
 			return null;
 		}
 
 		@Override
+		@Nullable
 		public JsonSerializer<?> getContentSerializer() {
 			return null;
 		}
@@ -288,6 +297,7 @@ public class Jackson2UberModule extends SimpleModule {
 		}
 
 		@Override
+		@Nullable
 		protected ContainerSerializer<?> _withValueTypeSerializer(TypeSerializer vts) {
 			return null;
 		}
@@ -309,7 +319,7 @@ public class Jackson2UberModule extends SimpleModule {
 
 		private BeanProperty property;
 
-		UberPagedResourcesSerializer(BeanProperty property) {
+		UberPagedResourcesSerializer(@Nullable BeanProperty property) {
 
 			super(PagedResources.class, false);
 			this.property = property;
@@ -341,6 +351,7 @@ public class Jackson2UberModule extends SimpleModule {
 		 * @see com.fasterxml.jackson.databind.ser.ContainerSerializer#getContentType()
 		 */
 		@Override
+		@Nullable
 		public JavaType getContentType() {
 			return null;
 		}
@@ -350,6 +361,7 @@ public class Jackson2UberModule extends SimpleModule {
 		 * @see com.fasterxml.jackson.databind.ser.ContainerSerializer#getContentSerializer()
 		 */
 		@Override
+		@Nullable
 		public JsonSerializer<?> getContentSerializer() {
 			return null;
 		}
@@ -368,6 +380,7 @@ public class Jackson2UberModule extends SimpleModule {
 		 * @see com.fasterxml.jackson.databind.ser.ContainerSerializer#_withValueTypeSerializer(com.fasterxml.jackson.databind.jsontype.TypeSerializer)
 		 */
 		@Override
+		@Nullable
 		protected ContainerSerializer<?> _withValueTypeSerializer(TypeSerializer vts) {
 			return null;
 		}
@@ -474,6 +487,7 @@ public class Jackson2UberModule extends SimpleModule {
 		 * Accessor for deserializer use for deserializing content values.
 		 */
 		@Override
+		@Nullable
 		public JsonDeserializer<Object> getContentDeserializer() {
 			return null;
 		}
@@ -566,6 +580,7 @@ public class Jackson2UberModule extends SimpleModule {
 		 * Accesor for deserializer use for deserializing content values.
 		 */
 		@Override
+		@Nullable
 		public JsonDeserializer<Object> getContentDeserializer() {
 			return null;
 		}
@@ -629,6 +644,7 @@ public class Jackson2UberModule extends SimpleModule {
 		 * Accesor for deserializer use for deserializing content values.
 		 */
 		@Override
+		@Nullable
 		public JsonDeserializer<Object> getContentDeserializer() {
 			return null;
 		}
@@ -695,6 +711,7 @@ public class Jackson2UberModule extends SimpleModule {
 		 * Accesor for deserializer use for deserializing content values.
 		 */
 		@Override
+		@Nullable
 		public JsonDeserializer<Object> getContentDeserializer() {
 			return null;
 		}
@@ -783,10 +800,11 @@ public class Jackson2UberModule extends SimpleModule {
 		}
 	}
 
-	private static boolean isPrimitiveType(List<UberData> data) {
+	private static boolean isPrimitiveType(@Nullable List<UberData> data) {
 		return data != null && data.size() == 1 && data.get(0).getName() == null;
 	}
 
+	@Nullable
 	private static PageMetadata extractPagingMetadata(UberDocument doc) {
 
 		return doc.getUber().getData().stream()

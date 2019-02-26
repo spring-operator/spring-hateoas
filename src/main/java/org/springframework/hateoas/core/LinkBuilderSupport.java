@@ -33,6 +33,7 @@ import org.springframework.hateoas.Identifiable;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.LinkBuilder;
 import org.springframework.hateoas.LinkRelation;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.util.UriComponents;
@@ -134,7 +135,7 @@ public abstract class LinkBuilderSupport<T extends LinkBuilder> implements LinkB
 	 * (non-Javadoc)
 	 * @see org.springframework.hateoas.LinkBuilder#slash(org.springframework.hateoas.Identifiable)
 	 */
-	public T slash(Identifiable<?> identifyable) {
+	public T slash(@Nullable Identifiable<?> identifyable) {
 
 		if (identifyable == null) {
 			return getThis();

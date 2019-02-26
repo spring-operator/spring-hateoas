@@ -18,6 +18,7 @@ package org.springframework.hateoas;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
@@ -69,6 +70,7 @@ public class Resource<T> extends ResourceSupport {
 	 * @return the content
 	 */
 	@JsonUnwrapped
+	@Nullable
 	public T getContent() {
 		return content;
 	}

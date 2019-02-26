@@ -40,7 +40,6 @@ import org.springframework.hateoas.hal.forms.HalFormsConfiguration;
 import org.springframework.hateoas.mvc.TypeConstrainedMappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -80,7 +79,7 @@ public class HypermediaWebMvcConfigurer implements WebMvcConfigurer, BeanFactory
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 
-		if (converters.stream().filter(MappingJackson2HttpMessageConverter.class::isInstance)
+		if (converters.stream()
 				.filter(AbstractJackson2HttpMessageConverter.class::isInstance)
 				.map(AbstractJackson2HttpMessageConverter.class::cast)
 				.map(AbstractJackson2HttpMessageConverter::getObjectMapper)

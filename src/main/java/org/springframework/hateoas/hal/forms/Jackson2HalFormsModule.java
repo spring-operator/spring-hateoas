@@ -40,6 +40,7 @@ import org.springframework.hateoas.hal.forms.HalFormsSerializers.HalFormsResourc
 import org.springframework.hateoas.hal.forms.HalFormsSerializers.HalFormsResourcesSerializer;
 import org.springframework.hateoas.mvc.JacksonSerializers.MediaTypeDeserializer;
 import org.springframework.http.MediaType;
+import org.springframework.lang.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -172,6 +173,7 @@ public class Jackson2HalFormsModule extends SimpleModule {
 					beanFactory.getBean(HalFormsConfiguration.class));
 		}
 
+		@Nullable
 		private Object findInstance(Class<?> type) {
 			return this.serializers.get(type);
 		}

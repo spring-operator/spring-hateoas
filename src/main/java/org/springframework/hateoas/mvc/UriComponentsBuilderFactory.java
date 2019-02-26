@@ -19,6 +19,7 @@ import java.net.URI;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -68,7 +69,7 @@ class UriComponentsBuilderFactory {
 		RequestAttributes requestAttributes = getRequestAttributes();
 		HttpServletRequest servletRequest = ((ServletRequestAttributes) requestAttributes).getRequest();
 
-		Assert.state(servletRequest != null, "Could not find current HttpServletRequest");
+		Assert.notNull(servletRequest, "Could not find current HttpServletRequest");
 
 		return servletRequest;
 	}
@@ -92,6 +93,7 @@ class UriComponentsBuilderFactory {
 		return builder;
 	}
 
+	@Nullable
 	private static URI getCachedBaseUri() {
 		return (URI) getRequestAttributes().getAttribute(CACHE_KEY, RequestAttributes.SCOPE_REQUEST);
 	}

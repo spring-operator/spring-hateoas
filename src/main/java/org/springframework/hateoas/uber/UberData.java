@@ -17,6 +17,7 @@ package org.springframework.hateoas.uber;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import lombok.Value;
 import lombok.experimental.Wither;
 
@@ -41,6 +42,7 @@ import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.support.PropertyUtils;
 import org.springframework.http.HttpMethod;
+import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -62,26 +64,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 class UberData {
 
-	private String id;
-	private String name;
-	private String label;
-	private List<LinkRelation> rel;
-	private String url;
+	private @Getter(onMethod = @__({@Nullable})) String id;
+	private @Getter(onMethod = @__({@Nullable})) String name;
+	private @Getter(onMethod = @__({@Nullable})) String label;
+	private @Getter(onMethod = @__({@Nullable})) List<LinkRelation> rel;
+	private @Getter(onMethod = @__({@Nullable})) String url;
 	private UberAction action;
 	private boolean transclude;
-	private String model;
-	private List<String> sending;
-	private List<String> accepting;
-	private Object value;
-	private List<UberData> data;
+	private @Getter(onMethod = @__({@Nullable})) String model;
+	private @Getter(onMethod = @__({@Nullable})) List<String> sending;
+	private @Getter(onMethod = @__({@Nullable})) List<String> accepting;
+	private @Getter(onMethod = @__({@Nullable})) Object value;
+	private @Getter(onMethod = @__({@Nullable})) List<UberData> data;
 
 	@JsonCreator
-	UberData(@JsonProperty("id") String id, @JsonProperty("name") String name, @JsonProperty("label") String label,
-			@JsonProperty("rel") List<LinkRelation> rel, @JsonProperty("url") String url,
-			@JsonProperty("action") UberAction action, @JsonProperty("transclude") boolean transclude,
-			@JsonProperty("model") String model, @JsonProperty("sending") List<String> sending,
-			@JsonProperty("accepting") List<String> accepting, @JsonProperty("value") Object value,
-			@JsonProperty("data") List<UberData> data) {
+	UberData(@JsonProperty("id") @Nullable String id, @JsonProperty("name") @Nullable String name, @JsonProperty("label") @Nullable String label,
+			@JsonProperty("rel") @Nullable List<LinkRelation> rel, @JsonProperty("url") @Nullable String url,
+			@JsonProperty("action") @Nullable UberAction action, @JsonProperty("transclude") boolean transclude,
+			@JsonProperty("model") @Nullable String model, @JsonProperty("sending") @Nullable List<String> sending,
+			@JsonProperty("accepting") @Nullable List<String> accepting, @JsonProperty("value") @Nullable Object value,
+			@JsonProperty("data") @Nullable List<UberData> data) {
 
 		this.id = id;
 		this.name = name;
@@ -104,6 +106,7 @@ class UberData {
 	/**
 	 * Don't render if it's {@link UberAction#READ}.
 	 */
+	@Nullable
 	public UberAction getAction() {
 		return action == UberAction.READ ? null : action;
 	}
@@ -111,6 +114,7 @@ class UberData {
 	/*
 	 * Use a {@link Boolean} to support returning {@literal null}, and if it is {@literal null}, don't render.
 	 */
+	@Nullable
 	public Boolean isTemplated() {
 
 		return Optional.ofNullable(this.url) //
@@ -121,6 +125,7 @@ class UberData {
 	/*
 	 * Use a {@link Boolean} to support returning {@literal null}, and if it is {@literal null}, don't render.
 	 */
+	@Nullable
 	public Boolean isTransclude() {
 		return this.transclude ? this.transclude : null;
 	}
@@ -254,9 +259,9 @@ class UberData {
 	 * @param content
 	 * @return
 	 */
-	private static Optional<UberData> extractContent(Object content) {
+	private static Optional<UberData> extractContent(@Nullable Object content) {
 
-		return Optional.of(content) //
+		return Optional.ofNullable(content) //
 				.filter(it -> !RESOURCE_TYPES.contains(content.getClass())) //
 				.map(it -> new UberData() //
 						.withName(StringUtils.uncapitalize(it.getClass().getSimpleName())) //
