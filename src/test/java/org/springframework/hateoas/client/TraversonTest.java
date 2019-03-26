@@ -151,7 +151,7 @@ public class TraversonTest {
 					.uri(URI.create(server.rootResource())) //
 					.accept(MediaTypes.HAL_JSON);
 
-			String expectedHeader = "<http://www.example.com>;rel=\"home\"";
+			String expectedHeader = "<https://www.example.com>;rel=\"home\"";
 
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Link", expectedHeader);
@@ -174,7 +174,7 @@ public class TraversonTest {
 					.uri(URI.create(server.rootResource())) //
 					.accept(MediaTypes.HAL_JSON);
 
-			String expectedHeader = "<http://www.example.com>;rel=\"home\"";
+			String expectedHeader = "<https://www.example.com>;rel=\"home\"";
 
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Link", expectedHeader);

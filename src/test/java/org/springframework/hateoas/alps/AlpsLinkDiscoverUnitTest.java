@@ -41,7 +41,7 @@ public class AlpsLinkDiscoverUnitTest extends AbstractLinkDiscovererUnitTest {
 	@Test
 	public void discoversFullyQualifiedRel() {
 
-		Optional<Link> link = getDiscoverer().findLinkWithRel("http://foo.com/bar", getInputString());
+		Optional<Link> link = getDiscoverer().findLinkWithRel("http://www.foo.com/bar", getInputString());
 
 		assertThat(link) //
 				.map(Link::getHref) //

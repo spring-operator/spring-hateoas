@@ -47,28 +47,28 @@ public class IanaLinkRelations {
 	/**
 	 * Refers to a substitute for this context
 	 *
-	 * @see http://www.w3.org/TR/html5/links.html#link-type-alternate
+	 * @see https://www.w3.org/TR/html5/links.html#link-type-alternate
 	 */
 	public static final LinkRelation ALTERNATE = LinkRelation.of("alternate");
 
 	/**
 	 * Refers to an appendix.
 	 *
-	 * @see http://www.w3.org/TR/1999/REC-html401-19991224
+	 * @see https://www.w3.org/TR/1999/REC-html401-19991224
 	 */
 	public static final LinkRelation APPENDIX = LinkRelation.of("appendix");
 
 	/**
 	 * Refers to a collection of records, documents, or other materials of historical interest.
 	 *
-	 * @see http://www.w3.org/TR/2011/WD-html5-20110113/links.html#rel-archives
+	 * @see https://www.w3.org/TR/2011/WD-html5-20110113/links.html#rel-archives
 	 */
 	public static final LinkRelation ARCHIVES = LinkRelation.of("archives");
 
 	/**
 	 * Refers to the context's author.
 	 *
-	 * @see http://www.w3.org/TR/html5/links.html#link-type-author
+	 * @see https://www.w3.org/TR/html5/links.html#link-type-author
 	 */
 	public static final LinkRelation AUTHOR = LinkRelation.of("author");
 
@@ -82,7 +82,7 @@ public class IanaLinkRelations {
 	/**
 	 * Gives a permanent link to use for bookmarking purposes.
 	 *
-	 * @see http://www.w3.org/TR/html5/links.html#link-type-bookmark
+	 * @see https://www.w3.org/TR/html5/links.html#link-type-bookmark
 	 */
 	public static final LinkRelation BOOKMARK = LinkRelation.of("bookmark");
 
@@ -96,7 +96,7 @@ public class IanaLinkRelations {
 	/**
 	 * Refers to a chapter in a collection of resources.
 	 *
-	 * @see http://www.w3.org/TR/1999/REC-html401-19991224
+	 * @see https://www.w3.org/TR/1999/REC-html401-19991224
 	 */
 	public static final LinkRelation CHAPTER = LinkRelation.of("chapter");
 
@@ -117,7 +117,7 @@ public class IanaLinkRelations {
 	/**
 	 * Refers to a table of contents.
 	 *
-	 * @see http://www.w3.org/TR/1999/REC-html401-19991224
+	 * @see https://www.w3.org/TR/1999/REC-html401-19991224
 	 */
 	public static final LinkRelation CONTENTS = LinkRelation.of("contents");
 
@@ -133,7 +133,7 @@ public class IanaLinkRelations {
 	/**
 	 * Refers to a copyright statement that applies to the link's context.
 	 *
-	 * @see http://www.w3.org/TR/1999/REC-html401-19991224
+	 * @see https://www.w3.org/TR/1999/REC-html401-19991224
 	 */
 	public static final LinkRelation COPYRIGHT = LinkRelation.of("copyright");
 
@@ -154,7 +154,7 @@ public class IanaLinkRelations {
 	/**
 	 * Refers to a resource providing information about the link's context.
 	 *
-	 * @see http://www.w3.org/TR/powder-dr/#assoc-linking
+	 * @see https://www.w3.org/TR/powder-dr/#assoc-linking
 	 */
 	public static final LinkRelation DESCRIBED_BY = LinkRelation.of("describedBy");
 
@@ -228,14 +228,14 @@ public class IanaLinkRelations {
 	/**
 	 * Refers to a glossary of terms.
 	 *
-	 * @see http://www.w3.org/TR/1999/REC-html401-19991224
+	 * @see https://www.w3.org/TR/1999/REC-html401-19991224
 	 */
 	public static final LinkRelation GLOSSARY = LinkRelation.of("glossary");
 
 	/**
 	 * Refers to context-sensitive help.
 	 *
-	 * @see http://www.w3.org/TR/html5/links.html#link-type-help
+	 * @see https://www.w3.org/TR/html5/links.html#link-type-help
 	 */
 	public static final LinkRelation HELP = LinkRelation.of("help");
 
@@ -249,21 +249,21 @@ public class IanaLinkRelations {
 	/**
 	 * Refers to a hub that enables registration for notification of updates to the context.
 	 *
-	 * @see http://pubsubhubbub.googlecode.com
+	 * @see https://pubsubhubbub.googlecode.com
 	 */
 	public static final LinkRelation HUB = LinkRelation.of("hub");
 
 	/**
 	 * Refers to an icon representing the link's context.
 	 *
-	 * @see http://www.w3.org/TR/html5/links.html#link-type-icon
+	 * @see https://www.w3.org/TR/html5/links.html#link-type-icon
 	 */
 	public static final LinkRelation ICON = LinkRelation.of("icon");
 
 	/**
 	 * Refers to an index.
 	 *
-	 * @see http://www.w3.org/TR/1999/REC-html401-19991224
+	 * @see https://www.w3.org/TR/1999/REC-html401-19991224
 	 */
 	public static final LinkRelation INDEX = LinkRelation.of("index");
 
@@ -458,7 +458,7 @@ public class IanaLinkRelations {
 	/**
 	 * Indicates that the link's context is a part of a series, and that the next in the series is the link target.
 	 *
-	 * @see http://www.w3.org/TR/html5/links.html#link-type-next
+	 * @see https://www.w3.org/TR/html5/links.html#link-type-next
 	 */
 	public static final LinkRelation NEXT = LinkRelation.of("next");
 
@@ -472,14 +472,14 @@ public class IanaLinkRelations {
 	/**
 	 * Indicates that the context‚Äôs original author or publisher does not endorse the link target.
 	 *
-	 * @see http://www.w3.org/TR/html5/links.html#link-type-nofollow
+	 * @see https://www.w3.org/TR/html5/links.html#link-type-nofollow
 	 */
 	public static final LinkRelation NOFOLLOW = LinkRelation.of("nofollow");
 
 	/**
 	 * Indicates that no referrer information is to be leaked when following the link.
 	 *
-	 * @see http://www.w3.org/TR/html5/links.html#link-type-noreferrer
+	 * @see https://www.w3.org/TR/html5/links.html#link-type-noreferrer
 	 */
 	public static final LinkRelation NOREFERRER = LinkRelation.of("noreferrer");
 
@@ -500,7 +500,7 @@ public class IanaLinkRelations {
 	/**
 	 * Gives the address of the pingback resource for the link context.
 	 *
-	 * @see http://www.hixie.ch/specs/pingback/pingback
+	 * @see https://www.hixie.ch/specs/pingback/pingback
 	 */
 	public static final LinkRelation PINGBACK = LinkRelation.of("pingback");
 
@@ -525,7 +525,7 @@ public class IanaLinkRelations {
 	 * the link context, and that the user agent ought to fetch, such that the user agent can deliver a faster response
 	 * once the resource is requested in the future.
 	 *
-	 * @see http://www.w3.org/TR/resource-hints/
+	 * @see https://www.w3.org/TR/resource-hints/
 	 */
 	public static final LinkRelation PREFETCH = LinkRelation.of("prefetch");
 
@@ -533,7 +533,7 @@ public class IanaLinkRelations {
 	 * Refers to a resource that should be loaded early in the processing of the link's context, without blocking
 	 * rendering.
 	 *
-	 * @see http://www.w3.org/TR/preload/
+	 * @see https://www.w3.org/TR/preload/
 	 */
 	public static final LinkRelation PRELOAD = LinkRelation.of("preload");
 
@@ -549,7 +549,7 @@ public class IanaLinkRelations {
 	/**
 	 * Indicates that the link's context is a part of a series, and that the previous in the series is the link target.
 	 *
-	 * @see http://www.w3.org/TR/html5/links.html#link-type-prev
+	 * @see https://www.w3.org/TR/html5/links.html#link-type-prev
 	 */
 	public static final LinkRelation PREV = LinkRelation.of("prev");
 
@@ -563,7 +563,7 @@ public class IanaLinkRelations {
 	/**
 	 * Refers to the previous resource in an ordered series of resources. Synonym for "prev".
 	 *
-	 * @see http://www.w3.org/TR/1999/REC-html401-19991224
+	 * @see https://www.w3.org/TR/1999/REC-html401-19991224
 	 */
 	public static final LinkRelation PREVIOUS = LinkRelation.of("previous");
 
@@ -622,7 +622,7 @@ public class IanaLinkRelations {
 	/**
 	 * Refers to a section in a collection of resources.
 	 *
-	 * @see http://www.w3.org/TR/1999/REC-html401-19991224
+	 * @see https://www.w3.org/TR/1999/REC-html401-19991224
 	 */
 	public static final LinkRelation SECTION = LinkRelation.of("section");
 
@@ -643,21 +643,21 @@ public class IanaLinkRelations {
 	/**
 	 * Refers to the first resource in a collection of resources.
 	 *
-	 * @see http://www.w3.org/TR/1999/REC-html401-19991224
+	 * @see https://www.w3.org/TR/1999/REC-html401-19991224
 	 */
 	public static final LinkRelation START = LinkRelation.of("start");
 
 	/**
 	 * Refers to a stylesheet.
 	 *
-	 * @see http://www.w3.org/TR/html5/links.html#link-type-stylesheet
+	 * @see https://www.w3.org/TR/html5/links.html#link-type-stylesheet
 	 */
 	public static final LinkRelation STYLESHEET = LinkRelation.of("stylesheet");
 
 	/**
 	 * Refers to a resource serving as a subsection in a collection of resources.
 	 *
-	 * @see http://www.w3.org/TR/1999/REC-html401-19991224
+	 * @see https://www.w3.org/TR/1999/REC-html401-19991224
 	 */
 	public static final LinkRelation SUBSECTION = LinkRelation.of("subsection");
 
@@ -671,7 +671,7 @@ public class IanaLinkRelations {
 	/**
 	 * Gives a tag (identified by the given address) that applies to the current document.
 	 *
-	 * @see http://www.w3.org/TR/html5/links.html#link-type-tag
+	 * @see https://www.w3.org/TR/html5/links.html#link-type-tag
 	 */
 	public static final LinkRelation TAG = LinkRelation.of("tag");
 
@@ -729,7 +729,7 @@ public class IanaLinkRelations {
 	 * Identifies a target URI that supports the Webmention protcol. This allows clients that mention a resource in some
 	 * form of publishing process to contact that endpoint and inform it that this resource has been mentioned.
 	 *
-	 * @see http://www.w3.org/TR/webmention/
+	 * @see https://www.w3.org/TR/webmention/
 	 */
 	public static final LinkRelation WEBMENTION = LinkRelation.of("webmention");
 

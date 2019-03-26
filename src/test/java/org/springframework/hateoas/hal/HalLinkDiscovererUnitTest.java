@@ -44,7 +44,7 @@ public class HalLinkDiscovererUnitTest extends AbstractLinkDiscovererUnitTest {
 	@Test
 	public void discoversFullyQualifiedRel() {
 
-		assertThat(getDiscoverer().findLinkWithRel("http://foo.com/bar", getInputString())) //
+		assertThat(getDiscoverer().findLinkWithRel("http://www.foo.com/bar", getInputString())) //
 				.map(Link::getHref) //
 				.hasValue("fullRelHref");
 	}
@@ -63,7 +63,7 @@ public class HalLinkDiscovererUnitTest extends AbstractLinkDiscovererUnitTest {
 				+ "media=\"pdf\";" //
 				+ "title=\"pdf customer copy\";" //
 				+ "type=\"portable document\";" //
-				+ "deprecation=\"http://example.com/customers/deprecated\";" //
+				+ "deprecation=\"https://example.com/customers/deprecated\";" //
 				+ "profile=\"my-profile\"" //
 				+ "name=\"my-name\"");
 

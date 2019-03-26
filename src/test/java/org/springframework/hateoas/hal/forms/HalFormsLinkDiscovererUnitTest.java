@@ -41,7 +41,7 @@ public class HalFormsLinkDiscovererUnitTest extends AbstractLinkDiscovererUnitTe
 	 */
 	@Test
 	public void discoversFullyQualifiedRel() {
-		assertThat(getDiscoverer().findLinkWithRel("http://foo.com/bar", getInputString())).isNotNull();
+		assertThat(getDiscoverer().findLinkWithRel("http://www.foo.com/bar", getInputString())).isNotNull();
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class HalFormsLinkDiscovererUnitTest extends AbstractLinkDiscovererUnitTe
 				+ "media=\"pdf\";" //
 				+ "title=\"pdf customer copy\";" //
 				+ "type=\"portable document\";" //
-				+ "deprecation=\"http://example.com/customers/deprecated\";" //
+				+ "deprecation=\"https://example.com/customers/deprecated\";" //
 				+ "profile=\"my-profile\"" //
 				+ "name=\"my-name\"");
 
