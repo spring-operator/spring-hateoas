@@ -5,7 +5,7 @@
     },
     "curies": {
       "name": "ex",
-      "href": "http://example.com/rels/{rel}",
+      "href": "https://example.com/rels/{rel}",
       "templated": true
     },
     "ex:orders": {

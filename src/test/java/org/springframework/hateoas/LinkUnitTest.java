@@ -139,7 +139,7 @@ public class LinkUnitTest {
 					+ "media=\"pdf\";" //
 					+ "title=\"pdf customer copy\";" //
 					+ "type=\"portable document\";" //
-					+ "deprecation=\"http://example.com/customers/deprecated\";" //
+					+ "deprecation=\"https://example.com/customers/deprecated\";" //
 					+ "profile=\"my-profile\";" //
 					+ "name=\"my-name\";")) //
 					.isEqualTo(new Link("/customer/1") //
@@ -147,7 +147,7 @@ public class LinkUnitTest {
 							.withMedia("pdf") //
 							.withTitle("pdf customer copy") //
 							.withType("portable document") //
-							.withDeprecation("http://example.com/customers/deprecated") //
+							.withDeprecation("https://example.com/customers/deprecated") //
 							.withProfile("my-profile") //
 							.withName("my-name"));
 		});
@@ -254,8 +254,8 @@ public class LinkUnitTest {
 	@Test
 	public void parsesUriLinkRelations() {
 
-		assertThat(Link.valueOf("<http://localhost>; rel=\"http://acme.com/rels/foo-bar\"").getRel()) //
-				.isEqualTo(LinkRelation.of("http://acme.com/rels/foo-bar"));
+		assertThat(Link.valueOf("<http://localhost>; rel=\"https://acme.com/rels/foo-bar\"").getRel()) //
+				.isEqualTo(LinkRelation.of("https://acme.com/rels/foo-bar"));
 	}
 
 	/**
