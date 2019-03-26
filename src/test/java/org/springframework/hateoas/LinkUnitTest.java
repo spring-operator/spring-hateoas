@@ -188,7 +188,7 @@ public class LinkUnitTest {
 	@Test
 	public void parsesUriLinkRelations() {
 
-		assertThat(Link.valueOf("<http://localhost>; rel=\"http://acme.com/rels/foo-bar\"").getRel(),
-				is("http://acme.com/rels/foo-bar"));
+		assertThat(Link.valueOf("<http://localhost>; rel=\"https://acme.com/rels/foo-bar\"").getRel(),
+				is("https://acme.com/rels/foo-bar"));
 	}
 }
